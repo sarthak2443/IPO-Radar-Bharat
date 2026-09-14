@@ -12,6 +12,10 @@ const tabs: { label: string; value: 'all' | IPOStatus }[] = [
 ]
 
 function App() {
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('ipo-radar-theme')
+    return savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
   const [activeTab, setActiveTab] = useState<'all' | IPOStatus>('all')
   const [sector, setSector] = useState('All sectors')
   const [query, setQuery] = useState('')
@@ -20,6 +24,10 @@ function App() {
   const [watched, setWatched] = useState<string[]>(() => JSON.parse(localStorage.getItem('ipo-radar-watchlist') || '[]') as string[])
 
   useEffect(() => { localStorage.setItem('ipo-radar-watchlist', JSON.stringify(watched)) }, [watched])
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light'
+    localStorage.setItem('ipo-radar-theme', darkMode ? 'dark' : 'light')
+  }, [darkMode])
   useEffect(() => {
     const handler = (event: KeyboardEvent) => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); setSearchOpen(true) } }
     window.addEventListener('keydown', handler); return () => window.removeEventListener('keydown', handler)
@@ -32,7 +40,7 @@ function App() {
   const avgGain = (ipos.filter((ipo) => ipo.listingGain).reduce((total, ipo) => total + (ipo.listingGain || 0), 0) / ipos.filter((ipo) => ipo.listingGain).length).toFixed(1)
 
   return <div className="app">
-    <header className="topbar"><Logo /><nav><a className="active" href="#discover">Discover</a><a href="#calendar">Calendar</a><a href="#listed">Listed</a><a href="#insights">Insights</a></nav><div className="top-actions"><button className="search-trigger" onClick={() => setSearchOpen(true)}><Icon name="search" size={17} /><span>Search companies</span><kbd>⌘ K</kbd></button><button className="plain-icon" aria-label="Notifications"><Icon name="bell" size={18} /></button><button className="plain-icon" aria-label="Toggle theme"><Icon name="sun" size={18} /></button><button className="profile">SR</button></div></header>
+    <header className="topbar"><Logo /><nav><a className="active" href="#discover">Discover</a><a href="#calendar">Calendar</a><a href="#listed">Listed</a><a href="#insights">Insights</a></nav><div className="top-actions"><button className="search-trigger" onClick={() => setSearchOpen(true)}><Icon name="search" size={17} /><span>Search companies</span><kbd>⌘ K</kbd></button><button className="plain-icon" aria-label="Notifications"><Icon name="bell" size={18} /></button><button className="plain-icon" aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'} onClick={() => setDarkMode((value) => !value)}><Icon name="sun" size={18} /></button><button className="profile">SR</button></div></header>
     <main>
       <section className="hero"><div className="eyebrow"><span className="eyebrow-dot" /> MARKET INTELLIGENCE <span className="eyebrow-date">13 SEP 2026</span></div><h1>See the IPO<br /><em>before it hits</em> the market.</h1><p className="hero-copy">A clearer way to discover, research and track India's IPO market — without the noise.</p><div className="hero-actions"><button className="primary-btn" onClick={() => document.getElementById('discover')?.scrollIntoView({ behavior: 'smooth' })}>Explore IPOs <Icon name="arrow" size={16} /></button><button className="secondary-btn" onClick={() => setActiveTab('open')}>See what's open</button></div></section>
       <section className="pulse-section"><div className="section-label"><span>Market pulse</span><span className="live"><i /> Live overview</span></div><div className="pulse-grid"><div className="pulse-lead"><span className="pulse-number">{openCount + 14}</span><span className="pulse-title">IPOs on the radar</span><span className="pulse-caption">Across upcoming, open and listed markets</span></div><div className="pulse-stat"><span>Open now</span><strong>{openCount}</strong><small>+2 since last week</small></div><div className="pulse-stat"><span>Closing soon</span><strong>2</strong><small className="warning">Next 48 hours</small></div><div className="pulse-stat"><span>Avg. listing gain</span><strong className="positive">+{avgGain}%</strong><small>Last 30 days</small></div></div></section>
