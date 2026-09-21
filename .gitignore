@@ -1,3 +1,28 @@
+# Dependencies
 node_modules/
+frontend/node_modules/
+
+# Production builds
 dist/
+frontend/dist/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+backend/.env
+frontend/.env
+
+# Go binaries and artifacts
+backend/bin/
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
