@@ -1,4 +1,4 @@
-# IPO Radar Bharat 🚀
+# IPO Radar Bharat
 
 A production-style IPO tracking and analytics platform for India, built as a serious Go/backend learning project.
 
@@ -6,7 +6,7 @@ The goal is to build this progressively — starting with a simple Go API and Po
 
 ---
 
-## 🎯 Project Goals
+## Project Goals
 
 IPO Radar Bharat provides:
 
@@ -31,7 +31,7 @@ IPO Radar Bharat provides:
 
 ---
 
-# 🏗️ High-Level Architecture
+# High-Level Architecture
 
 ```text
                          ┌─────────────────────┐
@@ -68,7 +68,7 @@ IPO Radar Bharat provides:
 
 ---
 
-# 🧱 Technology Stack
+# Technology Stack
 
 ## Frontend (`frontend/`)
 
@@ -97,7 +97,7 @@ IPO Radar Bharat provides:
 
 ---
 
-# 📁 Repository Structure
+# Repository Structure
 
 ```text
 IPO-Radar-Bharat/
@@ -146,7 +146,7 @@ IPO-Radar-Bharat/
 
 ---
 
-# 🚀 Quickstart
+# Quickstart
 
 ### Prerequisites
 
@@ -183,7 +183,7 @@ bun run dev   # or: npm run dev
 
 ---
 
-# 🚀 Milestone Plan
+# Milestone Plan
 
 ## Milestone 1 (Current)
 
