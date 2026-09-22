@@ -1,4 +1,4 @@
-.PHONY: all build run run-worker test tidy clean
+.PHONY: all build run run-worker seed test tidy clean
 
 all: build
 
@@ -12,6 +12,9 @@ run:
 
 run-worker:
 	go run ./cmd/worker
+
+seed:
+	go run ./cmd/seed
 
 test:
 	go test -v ./...
