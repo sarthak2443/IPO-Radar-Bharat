@@ -22,7 +22,7 @@ import (
 )
 
 func main() {
-	log.Println("🚀 Initializing IPO Radar Bharat API Server...")
+	log.Println("Initializing IPO Radar Bharat API server...")
 
 	// 1. Load configuration
 	cfg, err := config.LoadConfig()
@@ -34,14 +34,14 @@ func main() {
 	var db *gorm.DB
 	db, err = repository.NewDB(cfg)
 	if err != nil {
-		log.Printf("⚠️  Database connection warning: %v. Running in offline/fallback mode.", err)
+		log.Printf("Warning: Database connection failed: %v. Running in offline/fallback mode.", err)
 	} else {
-		log.Println("✅ Connected to PostgreSQL database successfully.")
+		log.Println("Connected to PostgreSQL database successfully.")
 		// Run auto migrations
 		if err := repository.AutoMigrate(db); err != nil {
-			log.Printf("⚠️  AutoMigrate error: %v", err)
+			log.Printf("Warning: AutoMigrate error: %v", err)
 		} else {
-			log.Println("✅ Database migrations applied successfully.")
+			log.Println("Database migrations applied successfully.")
 		}
 	}
 
@@ -80,7 +80,7 @@ func main() {
 	// 7. Start server with Graceful Shutdown
 	go func() {
 		addr := fmt.Sprintf(":%s", cfg.Port)
-		log.Printf("📡 IPO Radar Bharat API listening on http://localhost:%s\n", cfg.Port)
+		log.Printf("IPO Radar Bharat API listening on http://localhost:%s\n", cfg.Port)
 		if err := e.Start(addr); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Fatalf("Error starting HTTP server: %v", err)
 		}
@@ -91,7 +91,7 @@ func main() {
 	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
 	<-quit
 
-	log.Println("🛑 Shutting down server gracefully...")
+	log.Println("Shutting down server gracefully...")
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -99,5 +99,5 @@ func main() {
 		log.Fatalf("Server forced to shutdown: %v", err)
 	}
 
-	log.Println("👋 Server exited gracefully")
+	log.Println("Server exited gracefully")
 }

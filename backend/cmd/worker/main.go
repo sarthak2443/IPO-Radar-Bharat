@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	log.Println("⚙️  Starting IPO Radar Bharat Background Ingestion Worker...")
+	log.Println("Starting IPO Radar Bharat background ingestion worker...")
 
 	cfg, err := config.LoadConfig()
 	if err != nil {
@@ -47,7 +47,7 @@ func main() {
 	}()
 
 	<-quit
-	log.Println("🛑 Worker stopping...")
+	log.Println("Worker stopping...")
 	cancel()
-	log.Println("👋 Worker stopped successfully")
+	log.Println("Worker stopped successfully")
 }
