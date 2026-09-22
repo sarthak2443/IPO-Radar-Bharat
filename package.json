@@ -1,0 +1,9 @@
+{
+  "name": "ipo-radar-bharat",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --cwd frontend dev",
+    "build": "bun run --cwd frontend build",
+    "preview": "bun run --cwd frontend preview"
+  }
+}
