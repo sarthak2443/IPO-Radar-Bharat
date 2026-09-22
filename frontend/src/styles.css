@@ -104,7 +104,7 @@ a {
 
 .logo {
   font-size: 15px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   font-weight: 800;
   display: flex;
   gap: 10px;
@@ -115,7 +115,11 @@ a {
 
 .logo-muted {
   font-weight: 500;
-  color: var(--muted);
+  color: #708079;
+}
+
+html[data-theme="dark"] .logo-muted {
+  color: #8c9c94;
 }
 
 .logo-mark {
@@ -123,18 +127,25 @@ a {
   height: 22px;
   display: flex;
   align-items: flex-end;
-  gap: 3px;
+  gap: 2px;
 }
 
 .logo-mark i {
   width: 5px;
-  background: var(--green);
+  background: #267e65;
   display: block;
   border-radius: 3px 3px 1px 1px;
 }
 .logo-mark i:nth-child(1) { height: 10px; }
 .logo-mark i:nth-child(2) { height: 16px; }
-.logo-mark i:nth-child(3) { height: 22px; background: var(--orange); }
+.logo-mark i:nth-child(3) { height: 22px; background: #a8cdbc; }
+
+html[data-theme="dark"] .logo-mark i {
+  background: #2ea381;
+}
+html[data-theme="dark"] .logo-mark i:nth-child(3) {
+  background: #9fc3b3;
+}
 
 .topbar nav {
   display: flex;

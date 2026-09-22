@@ -115,9 +115,9 @@ function App() {
         <Logo />
         <nav>
           <a className="active" href="#discover">Discover</a>
-          <a href="#pulse">Market Pulse</a>
-          <a href="#radar">Radar</a>
-          <a href="#watchlist">Watchlist</a>
+          <a href="#calendar">Calendar</a>
+          <a href="#listed">Listed</a>
+          <a href="#insights">Insights</a>
         </nav>
         <div className="top-actions">
           <button className="search-trigger" onClick={() => setSearchOpen(true)}>
